@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - GitHub Code Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="my-4">
+            <h1>GitHub Code Analysis Report</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Analysis Results</li>
+                </ol>
+            </nav>
+        </header>
+
+        <div class="card mb-4">
+            <div class="card-header bg-light">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Repository Information</h5>
+                    <a href="{{ repo_url }}" target="_blank" class="btn btn-sm btn-outline-secondary">View on GitHub</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <h4>{{ repo_name }}</h4>
+                <p class="text-muted">Owner: {{ repo_owner }}</p>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h2>Code Analysis</h2>
+            </div>
+            <div class="card-body">
+                <div class="analysis-content">
+                    {{ analysis | safe }}
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center my-4">
+            <a href="/" class="btn btn-primary">Analyze Another Repository</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

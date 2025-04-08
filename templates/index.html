@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Code Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-5">
+            <h1 class="display-4">GitHub Code Analyzer</h1>
+            <p class="lead">Analyze any GitHub repository for code quality, best practices, and more using AI</p>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST" action="/">
+                    <div class="mb-3">
+                        <label for="repo_url" class="form-label">GitHub Repository URL</label>
+                        <input type="url" class="form-control" id="repo_url" name="repo_url" 
+                               placeholder="https://github.com/username/repository" required>
+                        <div class="form-text">Enter the full URL of the GitHub repository you want to analyze</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Analyze Repository</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h3>How it works</h3>
+            <ol>
+                <li>Enter a public GitHub repository URL</li>
+                <li>Our system retrieves the code files</li>
+                <li>Google's Gemini AI analyzes the code quality</li>
+                <li>Receive a comprehensive analysis report</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted my-4">
+        <p>Powered by Flask and Google Gemini AI</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
