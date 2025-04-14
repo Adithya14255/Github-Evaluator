@@ -49,7 +49,7 @@ def get_repo_contents(repo_url):
     
     # Filter only code files (ignore binaries, images, etc.)
     code_extensions = ['.py', '.js', '.html', '.css', '.java', '.cpp', '.c', '.h', '.go', '.rb', 
-                       '.php', '.ts', '.jsx', '.tsx', '.md', '.json', '.yml', '.yaml', '.xml','.txt']
+                       '.php', '.ts', '.jsx', '.tsx', '.md', '.json', '.yml', '.yaml', '.xml']
     
     code_files = []
     total_size = 0
@@ -118,39 +118,19 @@ def analyze_code_with_gemini(repo_data):
     
     {file_contents}
     
-    Provide a detailed code review analysis in Markdown format with this exact structure:
+    Provide a detailed analysis of the code covering:
+    1. Code Quality: Assess the overall code quality, readability, and maintainability.
+    2. Best Practices: Identify if the code follows industry best practices. (like pep 8 for python)
+    3. Architecture: Evaluate the architectural patterns and structure.
+    4. Potential Bugs: Highlight any potential bugs or issues.
+    5. Security Concerns: Identify potential security vulnerabilities.
+    6. Performance: Evaluate potential performance issues.
+    7. Recommendations: Provide specific recommendations for improvement.
     
-    ## Code Review: {repo_name}
+    Format your response with clear headings and bullet points where appropriate.
     
-    ### 1. Code Quality
-    * **Readability:** [Assess code readability, formatting, naming conventions]
-    * **Maintainability:** [Evaluate how easy the code is to maintain]
-    * **Testability:** [Comment on the testability of the code]
+    Also, compare with average code quality in the industry and provide a score from 1 to 10.(just the score)
     
-    ### 2. Best Practices
-    * **Documentation:** [Evaluate documentation quality and completeness]
-    * **Version Control:** [Comment on version control practices]
-    * **Error Handling:** [Analyze error handling approaches]
-    * **Dependency Management:** [Assess how dependencies are managed]
-    
-    ### 3. Architecture
-    * **Frontend:** [Evaluate frontend architecture]
-    * **Backend:** [Evaluate backend architecture]
-    * **Deployment:** [Comment on deployment configuration]
-    
-    ### 4. Potential Bugs
-    [List specific potential bugs or issues found in the code]
-    
-    ### 5. Security Concerns
-    [Identify potential security vulnerabilities]
-    
-    ### 6. Performance
-    [Evaluate potential performance issues and bottlenecks]
-    
-    ### 7. Recommendations
-    [Provide specific, actionable recommendations for improvement]
-    
-    Return ONLY the Markdown text with no preamble or explanation. Ensure formatting is correct with proper Markdown syntax.
     """
     
     # Call Gemini API

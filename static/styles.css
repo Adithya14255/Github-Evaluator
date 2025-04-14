@@ -1,27 +1,32 @@
 /* static/css/style.css */
 body {
     background-color: #f8f9fa;
-    color: #212529;
+    color: #ffffff; /* Change text color to white */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top:17vh;
 }
 
 .container {
     max-width: 900px;
+    color: #ffffff; /* Ensure text inside container is white */
 }
 
 .card {
     border-radius: 10px;
     margin-bottom: 20px;
+    color: #ffffff; /* Ensure text inside card is white */
 }
 
 .card-header {
     background-color: #f1f5f9;
     border-bottom: 1px solid #e9ecef;
+    color: #ffffff; /* Ensure text inside card-header is white */
 }
 
 .analysis-content {
     font-size: 16px;
     line-height: 1.6;
+    color: #ffffff; /* Ensure text inside analysis-content is white */
 }
 
 .analysis-content h1, 
@@ -29,12 +34,14 @@ body {
 .analysis-content h3 {
     margin-top: 1.5rem;
     margin-bottom: 1rem;
+    color: #ffffff; /* Ensure headings are white */
 }
 
 .analysis-content ul, 
 .analysis-content ol {
     padding-left: 20px;
     margin-bottom: 1rem;
+    color: #ffffff; /* Ensure list items are white */
 }
 
 /* Convert markdown formatted content */
@@ -42,14 +49,17 @@ body {
     font-size: 1.8rem;
     border-bottom: 1px solid #dee2e6;
     padding-bottom: 0.5rem;
+    color: #ffffff; /* Ensure h1 is white */
 }
 
 .analysis-content h2 {
     font-size: 1.5rem;
+    color: #ffffff; /* Ensure h2 is white */
 }
 
 .analysis-content h3 {
     font-size: 1.3rem;
+    color: #ffffff; /* Ensure h3 is white */
 }
 
 .analysis-content code {
@@ -58,6 +68,7 @@ body {
     border-radius: 3px;
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.9em;
+    color: #ffffff; /* Ensure inline code is white */
 }
 
 .analysis-content pre {
@@ -66,9 +77,14 @@ body {
     border-radius: 5px;
     border: 1px solid #e9ecef;
     overflow-x: auto;
+    color: #ffffff; /* Ensure preformatted text is white */
 }
 
 /* Form styling */
+.form-control {
+    color: #212529; /* Keep text inside form controls black */
+}
+
 .form-control:focus {
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -77,9 +93,11 @@ body {
 .btn-primary {
     background-color: #0d6efd;
     border-color: #0d6efd;
+    color: #ffffff; /* Ensure button text is white */
 }
 
 .btn-primary:hover {
     background-color: #0b5ed7;
     border-color: #0a58ca;
+    color: #ffffff; /* Ensure button text is white */
 }
