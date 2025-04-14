@@ -3,156 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis Results - GitHub Code Analyzer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Removed GitHub markdown CSS as requested -->
+    <title>Analysis Results - GitHub Resume Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
     <style>
-        /* Direct styling */
         body {
-            background-color: #ffffff;
-            color: #212529;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 40px;
         }
-
-        .container {
-            max-width: 900px;
-        }
-
         .card {
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
-
-        .card-header {
-            background-color: #f1f5f9;
-            border-bottom: 1px solid #e9ecef;
+        .profile-header {
+            background-color: #2b3137;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 10px 10px 0 0;
         }
-
-        /* General typography styling */
-        h1 {
-            font-size: 1.8rem;
-            padding-bottom: 0.5rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
         }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
+        .badge-skill {
+            color: grey;
+            border-radius: 30px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: normal;
         }
-
-        h3 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1rem;
+        .tab-pane {
+            padding: 20px;
         }
-
-        ul, ol {
-            padding-left: 2em;
-            margin-bottom: 1rem;
+        .nav-tabs .nav-link {
+            border-radius: 0;
+            padding: 15px 20px;
+            font-weight: 500;
         }
-
-        li + li {
-            margin-top: 0.25em;
-        }
-
-        strong {
+        .nav-tabs .nav-link.active {
             font-weight: 600;
-        }
-
-        code {
-            background-color: rgba(27, 31, 35, 0.05);
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 85%;
-        }
-
-        pre {
-            display: none;
-        }
-
-        pre code {
-            padding: 0;
-            background-color: transparent;
-        }
-
-        /* Form styling */
-        .form-control:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-
-        .btn-primary {
-            background-color: #0d6efd;
-            border-color: #0d6efd;
-        }
-
-        .btn-primary:hover {
-            background-color: #0b5ed7;
-            border-color: #0a58ca;
+            border-bottom: 3px solid #0d6efd;
         }
         
-        /* Analysis content styling */
-        .analysis-content {
-            padding: 16px;
-            line-height: 1.6;
+        .repo-link {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+        .repo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        pre{
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="my-4">
-            <h1>GitHub Code Analysis Report</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Analysis Results</li>
-                </ol>
-            </nav>
-        </header>
-
-        <div class="card mb-4">
-            <div class="card-header bg-light">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Repository Information</h5>
-                    <a href="{{ repo_url }}" target="_blank" class="btn btn-sm btn-outline-secondary">View on GitHub</a>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="profile-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-2 text-center">
+                                <img src="{{ avatar_url }}" alt="Profile Picture" class="profile-avatar">
+                            </div>
+                            <div class="col-md-10">
+                                <h1>{{ name }}</h1>
+                                <p class="mb-2">{{ bio }}</p>
+                                <a href="{{ github_url }}" target="_blank" class="btn btn-outline-light">
+                                    <i class="fab fa-github"></i> View GitHub Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="mb-3">Skills from Resume:</h5>
+                        <div>
+                            {% for skill in resume_skills %}
+                                <span class="badge-skill">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-body">
-                <h4>{{ repo_name }}</h4>
-                <p class="text-muted">Owner: {{ repo_owner }}</p>
-            </div>
         </div>
-
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h2>Code Analysis</h2>
-            </div>
-            <div class="card-body">
-                <div class="analysis-content">
-                    {{ analysis | safe }}
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header p-0">
+                        <ul class="nav nav-tabs" id="analysisTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#profile-tab-pane" type="button" role="tab" 
+                                        aria-controls="profile-tab-pane" aria-selected="true">
+                                    Profile Analysis
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="repo-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#repo-tab-pane" type="button" role="tab" 
+                                        aria-controls="repo-tab-pane" aria-selected="false">
+                                    Repository Analysis
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="analysisTabsContent">
+                        <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                            <div class="markdown-body">
+                                {{ analysis | safe }}
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="repo-tab-pane" role="tabpanel" aria-labelledby="repo-tab" tabindex="0">
+                            <div class="markdown-body2">
+                                {{ repo_analysis | safe }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="text-center my-4">
-            <a href="/" class="btn btn-primary">Analyze Another Repository</a>
+        
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-arrow-left"></i> Start New Analysis
+                </a>
+            </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         // Convert markdown to HTML
         document.addEventListener('DOMContentLoaded', function() {
-            const analysisContent = document.querySelector('.analysis-content');
+            // Already converted on server-side, but could add client-side markdown features here
+            const analysisContent = document.querySelector('.markdown-body');
             if (analysisContent) {
                 // Get the markdown content
                 const markdownContent = analysisContent.textContent;
                 // Convert markdown to HTML and set it
                 analysisContent.innerHTML = marked.parse(markdownContent);
+            }
+            const analysisContent2 = document.querySelector('.markdown-body2');
+            if (analysisContent2) {
+                // Get the markdown content
+                const markdownContent = analysisContent2.textContent;
+                // Convert markdown to HTML and set it
+                analysisContent2.innerHTML = marked.parse(markdownContent);
             }
         });
     </script>
