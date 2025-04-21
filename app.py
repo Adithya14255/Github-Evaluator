@@ -201,7 +201,7 @@ def analyze_candidate_with_gemini(github_data, resume_skills, resume_text):
     
     # Construct the prompt for Gemini
     prompt = f"""
-    You are an expert technical recruiter analyzing a candidate's GitHub profile against their resume.
+    You are an expert technical recruiter analyzing a candidate's GitHub profile against their resume. Be lenient
     
     GitHub Profile:
     - Username: {profile.get('login')}
@@ -236,18 +236,16 @@ def analyze_candidate_with_gemini(github_data, resume_skills, resume_text):
     [Provide a concise summary of the candidate's GitHub presence and activity level]
     
     ### 2. Skills Verification
-    [Analyze which resume skills are evidenced in their GitHub activity and which lack evidence]
+    [Analyze which resume skills are evidenced in their GitHub activity and which lack evidence 
+    if there are no skills listed say its not there or couldnt be parsed]
     
     ### 3. Hidden Talents
     [Identify skills demonstrated on GitHub but not claimed on the resume]
     
-    ### 4. Code Quality Assessment
-    [Evaluate code quality based on repositories and activity]
-    
-    ### 5. Consistency Analysis
+    ### 4. Consistency Analysis
     [Assess consistency between resume claims and GitHub evidence]
     
-    ### 6. Recommendations for Interviewer
+    ### 5. Recommendations for Interviewer
     [Provide specific areas to probe during technical interviews]
     
     Return ONLY the Markdown text with no preamble or explanation. Ensure formatting is correct with proper Markdown syntax.
@@ -278,7 +276,7 @@ def analyze_repo_with_gemini(repo_data, resume_skills):
     
     # Construct the prompt for Gemini
     prompt = f"""
-    You are a senior technical recruiter evaluating a candidate's repository against their claimed skills.
+    You are a senior technical recruiter evaluating a candidate's repository against their claimed skills. Be lenient
     
     Repository: {repo_name}
     Description: {repo_description}
@@ -305,7 +303,8 @@ def analyze_repo_with_gemini(repo_data, resume_skills):
     * **Documentation:** [Evaluate code comments and documentation]
     
     ### 3. Skill Verification
-    [Compare skills demonstrated in the repository with those claimed in the resume]
+    [Compare skills demonstrated in the repository with those claimed in the resume 
+    if there are no skills listed say its not there or couldnt be parsed] 
     
     ### 4. Technical Sophistication
     [Assess the level of technical complexity and sophistication]
@@ -317,7 +316,7 @@ def analyze_repo_with_gemini(repo_data, resume_skills):
     """
     
     # Call Gemini API
-    model = genai.GenerativeModel('gemini-1.5-pro')
+    model = genai.GenerativeModel('gemini-2.0-flash-lite')
     response = model.generate_content(prompt)
     
     return response.text
