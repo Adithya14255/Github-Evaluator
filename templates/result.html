@@ -23,6 +23,9 @@
             color: #ffffff;
             padding: 30px;
             border-radius: 10px 10px 0 0;
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Vertically center items */
+            gap: 20px; /* Add some gap between avatar and text */
         }
         .profile-avatar {
             width: 100px;
@@ -36,6 +39,9 @@
             margin: 5px;
             font-size: 0.9rem;
             font-weight: normal;
+            background-color: #e9ecef; /* Light background for badges */
+            padding: 0.375rem 0.75rem;
+            display: inline-block; /* Ensure badges wrap correctly */
         }
         .tab-pane {
             padding: 20px;
@@ -44,55 +50,125 @@
             border-radius: 0;
             padding: 15px 20px;
             font-weight: 500;
+            color: #495057; /* Darker text for inactive tabs */
+            border-bottom: 2px solid #dee2e6; /* Add a border to inactive tabs */
+        }
+        .nav-tabs .nav-link:hover {
+            background-color: #e9ecef; /* Light background on hover */
+            border-bottom-color: #dee2e6; /* Keep border color on hover */
         }
         .nav-tabs .nav-link.active {
             font-weight: 600;
-            border-bottom: 3px solid #0d6efd;
+            color: #0d6efd; /* Active tab text color */
+            border-bottom: 3px solid #0d6efd; /* Active tab bottom border */
         }
-        .markdown-body, .markdown-body2 {
+        .markdown-body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             font-size: 16px;
             line-height: 1.6;
             padding: 20px;
+            color: #24292e; /* Darker text for better readability */
         }
-        .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body2 h1, .markdown-body2 h2, .markdown-body2 h3 {
+        .markdown-body h1 {
             margin-top: 24px;
             margin-bottom: 16px;
+            font-size: 2.25em; /* Larger heading */
+            font-weight: 700; /* Stronger font weight */
+            line-height: 1.2;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid #eaecef;
+            color: #2c3e50; /* Darker heading color */
+        }
+        .markdown-body h2 {
+            margin-top: 24px;
+            margin-bottom: 16px;
+            font-size: 1.75em; /* Larger heading */
+            font-weight: 600;
+            line-height: 1.225;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid #eaecef;
+            color: #34495e;
+        }
+        .markdown-body h3 {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.5em; /* Larger heading */
             font-weight: 600;
             line-height: 1.25;
+            color: #4a6572;
         }
-        .markdown-body h1, .markdown-body2 h1 {
-            font-size: 2em;
-            padding-bottom: 0.3em;
-            border-bottom: 1px solid #eaecef;
-        }
-        .markdown-body h2, .markdown-body2 h2 {
-            font-size: 1.5em;
-            padding-bottom: 0.3em;
-            border-bottom: 1px solid #eaecef;
-        }
-        .markdown-body h3, .markdown-body2 h3 {
-            font-size: 1.25em;
-        }
-        .markdown-body ul, .markdown-body ol, .markdown-body2 ul, .markdown-body2 ol {
+        .markdown-body ul, .markdown-body ol {
             padding-left: 2em;
+            margin-bottom: 16px;
+            color: #24292e;
         }
-        .markdown-body blockquote, .markdown-body2 blockquote {
-            padding: 0 1em;
-            color: #6a737d;
-            border-left: 0.25em solid #dfe2e5;
+        .markdown-body li {
+            margin-bottom: 0.5em; /* Add space between list items */
+        }
+        .markdown-body p{
+            margin-bottom: 16px;
+            color: #24292e;
+        }
+        .markdown-body blockquote {
+            padding: 0.5rem 1rem;
+            color: #5e6e78;
+            border-left: 0.25em solid #4299e1; /* Blue accent for blockquote */
+            margin-bottom: 16px;
+            background-color: #f7fafc; /* Light background for blockquote */
+            border-radius: 0.375rem;
         }
         .repo-link {
             text-decoration: none;
-            color: inherit;
-            transition: all 0.2s ease;
+            color: #0366d6; /* GitHub blue */
+            font-weight: 500;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
         .repo-link:hover {
+            color: #24292e; /* Darker blue on hover */
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            /* Removed box-shadow for a cleaner effect */
         }
-        pre{
+        .rating-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 1rem;
+            background-color: #f0fdf4; /* Light green for positive */
+            color: #15803d; /* Darker green for text */
+            border: 1px solid #16a34a;
+        }
+        .rating-box.negative {
+            background-color: #fef2f2; /* Light red for negative */
+            color: #b91c1c; /* Darker red for text */
+            border-color: #ef4444;
+        }
+        .rating-box.neutral {
+            background-color: #fefce8; /* Light yellow for neutral */
+            color: #78350f;
+            border-color: #fcd34d;
+        }
+        /* Hide the raw markdown content that will be processed with marked.js */
+        .raw-markdown {
             display: none;
+        }
+        /* Style code blocks */
+        .markdown-body pre {
+            background-color: #f6f8fa;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+        }
+        .markdown-body code {
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: rgba(27, 31, 35, 0.05);
+            border-radius: 3px;
+            padding: 0.2em 0.4em;
+            font-size: 85%;
+        }
+        .markdown-body pre code {
+            background-color: transparent;
+            padding: 0;
         }
     </style>
 </head>
@@ -117,17 +193,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="profile-header">
-                        <div class="row align-items-center">
-                            <div class="col-md-2 text-center">
-                                <img src="{{ avatar_url }}" alt="Profile Picture" class="profile-avatar">
-                            </div>
-                            <div class="col-md-10">
-                                <h1>{{ name }}</h1>
-                                <p class="mb-2">{{ bio }}</p>
-                                <a href="{{ github_url }}" target="_blank" class="btn btn-outline-light">
-                                    <i class="fab fa-github"></i> View GitHub Profile
-                                </a>
-                            </div>
+                        <img src="{{ avatar_url }}" alt="Profile Picture" class="profile-avatar">
+                        <div>
+                            <h1>{{ name }}</h1>
+                            <p class="mb-2">{{ bio }}</p>
+                            <a href="{{ github_url }}" target="_blank" class="btn btn-outline-light">
+                                <i class="fab fa-github"></i> View GitHub Profile
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -151,7 +223,7 @@
                                 <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" 
                                         data-bs-target="#profile-tab-pane" type="button" role="tab" 
                                         aria-controls="profile-tab-pane" aria-selected="true">
-                                    Profile Analysis
+                                    Profile & Overall Analysis
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -166,12 +238,14 @@
                     <div class="tab-content" id="analysisTabsContent">
                         <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                             <div class="markdown-body">
-                                {{ analysis | safe }}
+                                <div id="profile-content-display"></div>
+                                <div class="raw-markdown" id="profile-content-raw">{{ analysis }}</div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="repo-tab-pane" role="tabpanel" aria-labelledby="repo-tab" tabindex="0">
-                            <div class="markdown-body2">
-                                {{ repo_analysis | safe }}
+                            <div class="markdown-body">
+                                <div id="repo-content-display"></div>
+                                <div class="raw-markdown" id="repo-content-raw">{{ repo_analysis }}</div>
                             </div>
                         </div>
                     </div>
@@ -192,23 +266,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        // Set up marked.js options
+        marked.setOptions({
+            highlight: function(code, lang) {
+                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                return hljs.highlight(code, { language }).value;
+            },
+            langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class
+            breaks: true, // Convert \n to <br>
+            gfm: true, // Use GitHub Flavored Markdown
+            smartLists: true
+        });
+
         // Convert markdown to HTML
         document.addEventListener('DOMContentLoaded', function() {
-            // Already converted on server-side, but could add client-side markdown features here
-            const analysisContent = document.querySelector('.markdown-body');
-            if (analysisContent) {
-                // Get the markdown content
-                const markdownContent = analysisContent.textContent;
-                // Convert markdown to HTML and set it
-                analysisContent.innerHTML = marked.parse(markdownContent);
-            }
-            const analysisContent2 = document.querySelector('.markdown-body2');
-            if (analysisContent2) {
-                // Get the markdown content
-                const markdownContent = analysisContent2.textContent;
-                // Convert markdown to HTML and set it
-                analysisContent2.innerHTML = marked.parse(markdownContent);
-            }
+            // Process profile analysis markdown
+            const profileRawMarkdown = document.getElementById('profile-content-raw').textContent;
+            const profileDisplayElement = document.getElementById('profile-content-display');
+            profileDisplayElement.innerHTML = marked.parse(profileRawMarkdown);
+            
+            // Process repository analysis markdown
+            const repoRawMarkdown = document.getElementById('repo-content-raw').textContent;
+            const repoDisplayElement = document.getElementById('repo-content-display');
+            repoDisplayElement.innerHTML = marked.parse(repoRawMarkdown);
+            
+            // Apply syntax highlighting to all code blocks
+            document.querySelectorAll('pre code').forEach(el => {
+                hljs.highlightElement(el);
+            });
         });
     </script>
 </body>
