@@ -119,7 +119,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
+## Screenshots
+![1](assets/1.png)
+![1](assets/2.png)
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
