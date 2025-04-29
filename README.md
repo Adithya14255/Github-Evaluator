@@ -1,8 +1,6 @@
-# GitHub Resume Analyzer
+# GitHub Skill Analyzer
 
 A Flask web application that analyzes technical resumes, extracts GitHub profiles, and provides comprehensive insights by comparing resume claims with actual GitHub activity and repositories.
-
-![GitHub Resume Analyzer](https://via.placeholder.com/800x450)
 
 ## Features
 
